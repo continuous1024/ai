@@ -153,5 +153,6 @@ def main():
         accuracy = 100 * float(correct_count) / total_pred[classname]
         print(f'Accuracy for class: {classname:5s} is {accuracy:.1f} %')
 
+
 if __name__ == '__main__':  # 新增保护代码块
     main()
