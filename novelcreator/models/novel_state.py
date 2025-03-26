@@ -6,3 +6,4 @@ class NovelState(TypedDict):
     chapters: List[Dict]
     generated_chapters: List[str]
     current_chapter_index: int
+    chapter_count: int

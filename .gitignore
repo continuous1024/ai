@@ -175,3 +175,5 @@ cython_debug/
 
 deeplearning/data/
 deeplearning/*.pth
+novelcreator/data/
+*.DS_Store
