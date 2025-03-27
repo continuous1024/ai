@@ -4,7 +4,7 @@ from workflow import create_workflow
 # 运行示例
 async def main():
     # 创建工作流
-    chapter_count = 2  # 默认生成5章，可以根据需要修改
+    chapter_count = 2  # 生成5章小说
     app = create_workflow()
     
     # 设置初始状态
