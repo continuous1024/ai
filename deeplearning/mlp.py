@@ -28,7 +28,9 @@ test_dataloader = DataLoader(test_data, batch_size=batch_size)
 
 for X, y in test_dataloader:
     print(f"Shape of X [N, C, H, W]: {X.shape}")
+    # Shape of X [N, C, H, W]: torch.Size([64, 1, 28, 28])
     print(f"Shape of y: {y.shape} {y.dtype}")
+    # Shape of y: torch.Size([64]) torch.int64
     break
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -50,12 +52,24 @@ class NeuralNetwork(nn.Module):
 
     def forward(self, x):
         x = self.flatten(x)
+        # print(x.shape) torch.Size([64, 784])
         logits = self.linear_relu_stack(x)
+        # print(logits.shape) torch.Size([64, 10])
         return logits
 
 
 model = NeuralNetwork().to(device)
 print(model)
+# NeuralNetwork(
+#   (flatten): Flatten(start_dim=1, end_dim=-1)
+#   (linear_relu_stack): Sequential(
+#     (0): Linear(in_features=784, out_features=512, bias=True)
+#     (1): ReLU()
+#     (2): Linear(in_features=512, out_features=512, bias=True)
+#     (3): ReLU()
+#     (4): Linear(in_features=512, out_features=10, bias=True)
+#   )
+# )
 loss_fn = nn.CrossEntropyLoss()
 optimizer = torch.optim.SGD(model.parameters(), lr=1e-3)
 
@@ -108,32 +122,32 @@ def test(dataloader, model, loss_fn):
 
 model = NeuralNetwork().to(device)
 model.load_state_dict(torch.load("model.pth", weights_only=True))
+print(model)
 
+# classes = [
+#     "T-shirt/top",
+#     "Trouser",
+#     "Pullover",
+#     "Dress",
+#     "Coat",
+#     "Sandal",
+#     "Shirt",
+#     "Sneaker",
+#     "Bag",
+#     "Ankle boot",
+# ]
 
-classes = [
-    "T-shirt/top",
-    "Trouser",
-    "Pullover",
-    "Dress",
-    "Coat",
-    "Sandal",
-    "Shirt",
-    "Sneaker",
-    "Bag",
-    "Ankle boot",
-]
-
-model.eval()
-x, y = test_data[0][0], test_data[0][1]
-softmax = nn.Softmax(dim=1)
-with torch.no_grad():
-    x = x.to(device)
-    pred = model(x)
-    print(pred)
-    # 一般省略掉
-    pred_probab = softmax(pred)
-    print(pred_probab)
-    print(pred_probab.argmax(1))
-    print(y)
-    predicted, actual = classes[pred[0].argmax(0)], classes[y]
-    print(f'Predicted: "{predicted}", Actual: "{actual}"')
+# model.eval()
+# x, y = test_data[0][0], test_data[0][1]
+# softmax = nn.Softmax(dim=1)
+# with torch.no_grad():
+#     x = x.to(device)
+#     pred = model(x)
+#     print(pred)
+#     # 一般省略掉
+#     pred_probab = softmax(pred)
+#     print(pred_probab)
+#     print(pred_probab.argmax(1))
+#     print(y)
+#     predicted, actual = classes[pred[0].argmax(0)], classes[y]
+#     print(f'Predicted: "{predicted}", Actual: "{actual}"')

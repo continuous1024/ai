@@ -10,11 +10,19 @@ async def main():
     # 设置初始状态
     config = RunnableConfig()
     result = await app.ainvoke({
-        "description": "一部关于人工智能获得自我意识的科幻小说",
+        "description": "一部关于斗罗大陆的同人小说，主角是男的，武魂是威能全失的主神空间",
+        "title": "",
+        "outline": "",
+        "world_setting": "",
         "chapters": [],
         "generated_chapters": [],
         "current_chapter_index": 0,
-        "chapter_count": chapter_count
+        "chapter_count": chapter_count,
+        "characters": [],
+        "conflicts": [],
+        "settings": [],
+        "dialogues": {},
+        "review_notes": []
     }, config)
     
     # 输出结果

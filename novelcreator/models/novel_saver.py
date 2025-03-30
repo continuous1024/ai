@@ -25,7 +25,7 @@ def generate_novel_title(description: str) -> str:
     
     return title
 
-def save_novel(description: str, chapters: List[Dict], generated_chapters: List[str]) -> str:
+def save_novel(title: str, description: str, outline: str, world_setting: str, chapters: List[Dict], generated_chapters: List[str]) -> str:
     """
     保存小说到data目录
     
@@ -37,8 +37,8 @@ def save_novel(description: str, chapters: List[Dict], generated_chapters: List[
     Returns:
         保存路径
     """
-    # 生成小说标题
-    novel_title = generate_novel_title(description)
+    # 使用传入的标题
+    novel_title = title
     
     # 创建保存目录
     base_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data")
@@ -51,6 +51,8 @@ def save_novel(description: str, chapters: List[Dict], generated_chapters: List[
     info = {
         "title": novel_title,
         "description": description,
+        "outline": outline,
+        "world_setting": world_setting,
         "chapter_count": len(chapters)
     }
     
@@ -64,6 +66,8 @@ def save_novel(description: str, chapters: List[Dict], generated_chapters: List[
     # 保存完整小说内容
     full_content = f"# {novel_title}\n\n"
     full_content += f"## 简介\n{description}\n\n"
+    full_content += f"## 大纲\n{outline}\n\n"
+    full_content += f"## 世界观设定\n{world_setting}\n\n"
     
     for i, (chapter_info, chapter_content) in enumerate(zip(chapters, generated_chapters)):
         chapter_title = chapter_info.get("title", f"第{i+1}章")
