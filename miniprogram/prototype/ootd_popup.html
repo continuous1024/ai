@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOTD生成弹窗</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: rgba(0, 0, 0, 0.5);
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+        
+        /* 弹窗样式 */
+        .popup {
+            background-color: #ffffff;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            padding: 20px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        /* 关闭按钮 */
+        .close-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-size: 20px;
+            color: #999;
+            cursor: pointer;
+        }
+        
+        /* 轮播图样式 */
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 240px;
+            overflow: hidden;
+            border-radius: 12px;
+            margin: 16px 0;
+        }
+        
+        .carousel-item {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transition: opacity 0.5s ease;
+            opacity: 0;
+        }
+        
+        .carousel-item.active {
+            opacity: 1;
+        }
+        
+        .carousel-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+        
+        .carousel-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.5);
+            margin: 0 4px;
+        }
+        
+        .dot.active {
+            background-color: #ffffff;
+        }
+        
+        /* 穿搭建议样式 */
+        .ootd-suggestion {
+            background-color: #f8f8f8;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        
+        /* 按钮样式 */
+        .btn-primary {
+            background-color: #07c160;
+            color: white;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-weight: 600;
+            text-align: center;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            margin-top: 16px;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: #07c160;
+            border: 1px solid #07c160;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-weight: 600;
+            text-align: center;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 12px;
+        }
+        
+        /* 标签样式 */
+        .tag {
+            display: inline-block;
+            background-color: #e6f7ff;
+            color: #1890ff;
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-size: 12px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部状态栏和主内容区域在背景中，这里只显示弹窗 -->
+    
+    <!-- 弹窗 -->
+    <div class="popup">
+        <i class="fas fa-times close-btn"></i>
+        
+        <h2 class="text-xl font-semibold mb-2">今日OOTD推荐</h2>
+        <div class="flex items-center mb-4">
+            <span class="text-sm text-gray-500 mr-2">运动休闲风</span>
+            <span class="text-sm text-gray-500"><i class="fas fa-sun text-yellow-500 mr-1"></i> 26°C 晴朗</span>
+        </div>
+        
+        <!-- 穿搭建议 -->
+        <div class="ootd-suggestion">
+            <h3 class="text-lg font-medium mb-2">穿搭建议</h3>
+            <p class="text-gray-700 mb-3">今天天气晴朗，温度适中，非常适合运动休闲风格。建议搭配轻薄透气的上衣，舒适的运动裤或牛仔裤，再加上一双运动鞋，既时尚又舒适。</p>
+            
+            <div class="mb-3">
+                <span class="tag">舒适</span>
+                <span class="tag">透气</span>
+                <span class="tag">活力</span>
+                <span class="tag">阳光</span>
+            </div>
+            
+            <div class="text-sm text-gray-600">
+                <div class="mb-2"><i class="fas fa-tshirt mr-2"></i> <strong>上装:</strong> 白色/浅色系T恤、轻薄卫衣或运动上衣</div>
+                <div class="mb-2"><i class="fas fa-socks mr-2"></i> <strong>下装:</strong> 运动裤、休闲牛仔裤或短裤</div>
+                <div class="mb-2"><i class="fas fa-shoe-prints mr-2"></i> <strong>鞋子:</strong> 运动鞋、休闲帆布鞋</div>
+                <div><i class="fas fa-hat-cowboy mr-2"></i> <strong>配饰:</strong> 棒球帽、运动手表、简约背包</div>
+            </div>
+        </div>
+        
+        <!-- 轮播图 -->
+        <h3 class="text-lg font-medium mb-2">穿搭灵感</h3>
+        <div class="carousel">
+            <div class="carousel-item active">
+                <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="运动休闲风穿搭" class="carousel-img">
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="运动休闲风穿搭" class="carousel-img">
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1507114845806-0347f6150324?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="运动休闲风穿搭" class="carousel-img">
+            </div>
+            
+            <div class="carousel-dots">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+        
+        <button class="btn-primary">
+            <i class="fas fa-share-alt mr-2"></i> 分享穿搭
+        </button>
+        
+        <button class="btn-outline">
+            <i class="fas fa-sync-alt mr-2"></i> 重新生成
+        </button>
+    </div>
+    
+    <script>
+        // 简单的轮播图效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const items = document.querySelectorAll('.carousel-item');
+            const dots = document.querySelectorAll('.dot');
+            let currentIndex = 0;
+            
+            function showSlide(index) {
+                items.forEach(item => item.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                items[index].classList.add('active');
+                dots[index].classList.add('active');
+            }
+            
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % items.length;
+                showSlide(currentIndex);
+            }
+            
+            // 自动轮播
+            setInterval(nextSlide, 3000);
+            
+            // 点击圆点切换轮播
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    currentIndex = index;
+                    showSlide(currentIndex);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

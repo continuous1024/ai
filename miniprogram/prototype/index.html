@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天气+OOTD小程序原型</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        .phone-container {
+            width: 390px;
+            height: 844px;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+            background: white;
+            margin: 20px;
+        }
+        .phone-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .prototype-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .prototype-description {
+            margin-bottom: 30px;
+            color: #666;
+            max-width: 800px;
+        }
+        .prototypes-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .prototype-label {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 10px;
+            color: #333;
+        }
+    </style>
+</head>
+<body class="p-8">
+    <div class="max-w-7xl mx-auto">
+        <h1 class="prototype-title text-center">天气+OOTD小程序原型设计</h1>
+        <p class="prototype-description text-center">这是一个天气与穿搭推荐小程序的原型设计，包含OOTD主页、个人信息页和首次使用引导页面。设计遵循iOS和微信小程序的界面规范。</p>
+        
+        <div class="prototypes-container">
+            <div class="flex flex-col items-center">
+                <div class="phone-container">
+                    <iframe src="ootd.html" class="phone-frame" title="OOTD主页"></iframe>
+                </div>
+                <div class="prototype-label">OOTD主页</div>
+            </div>
+            
+            <div class="flex flex-col items-center">
+                <div class="phone-container">
+                    <iframe src="profile.html" class="phone-frame" title="个人信息页"></iframe>
+                </div>
+                <div class="prototype-label">个人信息页</div>
+            </div>
+            
+            <div class="flex flex-col items-center">
+                <div class="phone-container">
+                    <iframe src="onboarding.html" class="phone-frame" title="首次使用引导"></iframe>
+                </div>
+                <div class="prototype-label">首次使用引导</div>
+            </div>
+            
+            <div class="flex flex-col items-center">
+                <div class="phone-container">
+                    <iframe src="ootd_popup.html" class="phone-frame" title="OOTD生成弹窗"></iframe>
+                </div>
+                <div class="prototype-label">OOTD生成弹窗</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
