@@ -177,4 +177,4 @@ deeplearning/data/
 deeplearning/*.pth
 novelcreator/data/
 *.DS_Store
-ago/tmp/
+ago-examples/tmp/
