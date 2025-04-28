@@ -6,17 +6,20 @@
 # # Print the response in the terminal
 # agent.print_response("Share a 2 sentence horror story.")
 from agno.agent import Agent, RunResponse  # noqa
-from agno.models.google import Gemini
+# from agno.models.google import Gemini
+from agno.models.ollama import Ollama
 from agno.tools.yfinance import YFinanceTools
 
 agent = Agent(
-  model=Gemini(id="gemini-2.0-flash-exp"),
+  model=Ollama(id="qwen3:8b"),
   tools=[YFinanceTools(stock_price=True)],
   instructions=[
       "Use tables to display data.",
       "Only include the table in your response. No other text.",
   ],
-  markdown=True
+  show_tool_calls=True,
+  markdown=True,
+  debug_mode=True
 )
 
 # Get the response in a variable

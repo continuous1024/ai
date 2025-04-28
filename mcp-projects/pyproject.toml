@@ -5,6 +5,8 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
+    "asyncio>=3.4.3",
+    "fastmcp>=2.2.2",
     "mcp[cli]>=1.6.0",
     "motor>=3.7.0",
     "pandas>=2.2.3",

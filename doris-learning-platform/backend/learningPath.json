@@ -1,0 +1,23 @@
+[
+  {
+    "id": "intro",
+    "title": "Doris入门",
+    "level": "初级",
+    "objectives": ["了解OLAP与MPP架构","安装与启动Doris","基本SQL查询"],
+    "skills": ["CREATE TABLE","SELECT","INSERT"]
+  },
+  {
+    "id": "architecture",
+    "title": "Doris架构详解",
+    "level": "中级",
+    "objectives": ["FE/BE组件职责","节点通信机制","存储与查询流程"],
+    "skills": ["EXPLAIN","SHOW PROC","性能调优"]
+  },
+  {
+    "id": "advanced",
+    "title": "高级优化与实战",
+    "level": "高级",
+    "objectives": ["查询优化技巧","资源隔离与调度","最佳实践分享"],
+    "skills": ["物化视图","分区优化","索引优化"]
+  }
+]

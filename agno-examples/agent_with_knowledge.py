@@ -4,6 +4,7 @@ from agno.knowledge.url import UrlKnowledge
 from agno.models.google import Gemini
 from agno.tools.reasoning import ReasoningTools
 from agno.vectordb.lancedb import LanceDb, SearchType
+from agno.embedder.ollama import OllamaEmbedder
 
 # Load Agno documentation in a knowledge base
 knowledge = UrlKnowledge(
@@ -12,7 +13,7 @@ knowledge = UrlKnowledge(
         uri="tmp/lancedb",
         table_name="agno_docs",
         search_type=SearchType.hybrid,
-        embedder=GeminiEmbedder(),
+        embedder=OllamaEmbedder(id="bge-m3", dimensions=1024),
     ),
 )
 

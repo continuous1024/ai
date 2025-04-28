@@ -1,0 +1,16 @@
+.logo {
+  height: 32px;
+  margin: 16px;
+  color: #fff;
+  text-align: center;
+  font-size: 18px;
+}
+.header {
+  background: #fff;
+  padding: 0 16px;
+  font-size: 20px;
+  line-height: 64px;
+}
+textarea {
+  font-family: monospace;
+}
