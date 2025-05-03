@@ -1,6 +1,9 @@
 from typing import List
 
 from agno.agent import Agent, RunResponse  # noqa
+from agno.models.deepseek import DeepSeek
+from agno.models.openrouter import OpenRouter
+from agno.models.ollama import Ollama
 from agno.models.google import Gemini
 from pydantic import BaseModel, Field
 from rich.pretty import pprint  # noqa
@@ -26,9 +29,17 @@ class MovieScript(BaseModel):
 
 
 movie_agent = Agent(
-    model=Gemini(id="gemini-2.0-flash-exp"),
+    # model=Gemini(id="gemini-2.0-flash"),
+    # model=Ollama(id="qwen3:4b"),
+    model=OpenRouter(id="gpt-4o"),
+    # model=DeepSeek(id="deepseek-chat"),
+    # model=DeepSeek(id="deepseek-reasoner")
+    instructions=[
+        "以中文生成回复",
+    ],
     description="You help people write movie scripts.",
     response_model=MovieScript,
+    debug_mode=True,
 )
 
 movie_agent.print_response("中国北京")
